@@ -185,8 +185,19 @@ def train_forest(features, labels, num_trees=10, max_depth=10, min_samples_split
 def combine_predictions(tree_predictions):
     return np.array([np.bincount(tree_predictions[:, j]).argmax() for j in range(tree_predictions.shape[1])])
 
-# Step 14 - predict_forest (not yet solved)
-# TODO: implement
+# Step 14 - predict_forest
+def predict_forest(forest, features):
+    predict = []
+    for tree in forest:
+        fitted_tree = tree['tree']
+        feature_indices = tree['feature_indices']
+
+        pred = predict_tree(fitted_tree, features)
+        predict.append(pred)
+
+    predict = np.asarray(predict)
+
+    return combine_predictions(predict)
 
 # Step 15 - accuracy (not yet solved)
 # TODO: implement
