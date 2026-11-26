@@ -143,8 +143,11 @@ def bootstrap_sample(features, labels, rng):
         labels[bootstrap_indices]
     )
 
-# Step 11 - feature_subset (not yet solved)
-# TODO: implement
+# Step 11 - feature_subset
+import numpy as np
+
+def feature_subset(num_features, num_to_pick, rng):
+    return rng.choice(np.arange(num_features), num_to_pick, replace=False)
 
 # Step 12 - train_forest (not yet solved)
 # TODO: implement
