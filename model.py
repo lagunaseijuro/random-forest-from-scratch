@@ -125,8 +125,14 @@ def predict_example_tree(tree, example):
 
     return predict_example_tree(tree['right'], example)
 
-# Step 9 - predict_tree (not yet solved)
-# TODO: implement
+# Step 9 - predict_tree
+def predict_tree(tree, features):
+    preds = []
+    for idx in range(features.shape[0]):
+        pred = predict_example_tree(tree, features[idx, :])
+        preds.append(pred)
+
+    return np.asarray(preds)
 
 # Step 10 - bootstrap_sample (not yet solved)
 # TODO: implement
