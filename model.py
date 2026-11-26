@@ -43,8 +43,32 @@ def split_score(parent_labels, left_labels, right_labels):
 
     return gain
 
-# Step 4 - best_split (not yet solved)
-# TODO: implement
+# Step 4 - best_split
+import numpy as np
+
+def best_split(features, labels, feature_indices):
+    feature_index = None
+    threshold = None 
+    score = 0.0
+
+    for idx in feature_indices:
+        values = np.unique(features[:, idx])
+        for val in values:
+            left_features, left_labels, right_features, right_labels = split_dataset(
+                features, labels, idx, val
+            )
+
+            curr_gain = split_score(labels, left_labels, right_labels)
+            if curr_gain > score:
+                score = curr_gain
+                threshold = val
+                feature_index = idx 
+
+    return {
+        'feature_index' : feature_index,
+        'threshold' : threshold,
+        'score' : score
+    }
 
 # Step 5 - should_stop (not yet solved)
 # TODO: implement
